@@ -25,3 +25,5 @@ Ten meal concepts and quantities are curated educational examples created with A
 Illustrative photos are requested from `images.unsplash.com`; URLs are in data.js and index.html. They may depict a related rather than identical dish. No images were downloaded or bundled. Availability of photos and Google Fonts requires internet access. Browser system fonts and colored card backgrounds are fallbacks. Replace with owned or appropriately licensed local photos for a fully self-contained submission.
 
 The redesigned food library and fridge use 24 locally authored SVG illustrations in `dist/assets/foods/`. These are stylized geometric drawings and do not depend on fonts or external image services. The external-image notes above apply only to recipe photographs.
+
+Current visual revision: all recipe photography has been replaced by ten locally authored flat SVG meal illustrations in `dist/assets/recipes/`. Recipe data uses only these local paths. The fridge uses CSS geometry to draw the open appliance; no external artwork or image-generation service is involved. Earlier photo notes describe a previous revision.

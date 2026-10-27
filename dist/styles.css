@@ -182,3 +182,41 @@ footer a { color: #7c8f6d; text-decoration: none; }
   .fridge-shelves { grid-template-columns: 1fr 1fr; }
 }
 @media(prefers-reduced-motion:reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+/* Open, two-compartment appliance: flat drawn shell, door pockets and feet. */
+.fridge-scene { position: relative; padding: 0 85px 18px 0; filter: drop-shadow(0 15px 15px #3d50300b); }
+.freezer-door { height: 94px; border: 2px solid #aebda0; border-bottom: 6px solid #a5b496; background: #dae3cd; border-radius: 29px 29px 6px 6px; padding: 20px 25px; position: relative; box-shadow: inset 0 3px 0 #f1f4e9; }
+.freezer-door>span { font: 600 11px Manrope,sans-serif; color: #69835b; letter-spacing: 1px; }
+.freezer-handle { position: absolute; bottom: 16px; left: 26px; width: 96px; height: 9px; border: 2px solid #a6b695; border-radius: 5px; background: #f4f6ed; box-shadow: 0 3px 0 #bdcbb0; }
+.refrigerator { border: 8px solid #c5d2b6; border-top: 5px solid #b9c8a9; border-radius: 4px 4px 16px 16px; padding: 14px 16px 0; box-shadow: inset 3px 0 0 #e1e8d6,inset -3px 0 0 #e1e8d6; background: #f0f3e8; min-height: 450px; }
+.fridge-top { padding-bottom: 15px; font-size: 7px; }
+.fridge-light { width: 27px; height: 7px; background: #f4e7b3; border-radius: 4px; box-shadow: 0 0 8px #f4e7b3; }
+.fridge-shelves { grid-template-columns: repeat(2,minmax(0,1fr)); min-height: 290px; gap: 13px 10px; background: repeating-linear-gradient(to bottom,transparent 0px,transparent 155px,#d6e0cb 155px,#d6e0cb 160px,transparent 160px,transparent 165px); }
+.fridge-food { background: #f0f3e8; padding-bottom: 15px; }
+.fridge-empty { padding: 35px 10px 48px; background: #f0f3e8ee; }
+.fridge-empty h2 { font-size: 19px; }
+.fridge-base { margin: 0 -16px; min-height: 58px; padding: 18px; background: #dce6d0; border: 2px solid #c1cfae; border-radius: 12px 12px 6px 6px; }
+.fridge-base span:last-child { font-size: 6px; }
+.open-fridge-door { position: absolute; top: 99px; right: 0; bottom: 18px; width: 83px; border: 6px solid #becdac; border-left: 7px solid #aabb99; border-radius: 2px 14px 16px 2px; background: #e8eedf; transform: skewY(6deg); transform-origin: left top; box-shadow: 5px 3px 0 #d0dcc1; }
+.door-gasket { position: absolute; inset: 8px 5px; border: 2px solid #d3dfc4; border-radius: 7px; }
+.door-pocket { position: absolute; width: calc(100% - 6px); left: 3px; height: 65px; border: 2px solid #c1d0ae; border-top: 0; border-radius: 0 0 7px 7px; background: linear-gradient(to top,#d5e0c6 0 19px,transparent 19px); }
+.top-pocket { top: 15%; height: 42px; }
+.middle-pocket { top: 42%; }
+.bottom-pocket { bottom: 8%; }
+.door-pocket img { width: 43px; height: 60px; margin-top: -18px; opacity: .75; }
+.door-handle { position: absolute; top: 22px; right: -10px; height: 105px; width: 8px; border: 2px solid #9fb08c; border-radius: 5px; background: #e1e9d6; }
+.fridge-feet::before,.fridge-feet::after { content: ''; position: absolute; bottom: 8px; height: 12px; width: 23px; border-radius: 0 0 5px 5px; background: #8e9f7c; z-index: -1; }
+.fridge-feet::before { left: 23px; }.fridge-feet::after { right: 107px; }
+.photo { background: #edf2e5; height: 205px; }
+.photo img,.detail-photo { object-fit: contain; background: #edf2e5; }
+@media(max-width:650px) {
+  .fridge-scene { width: 100%; padding-right: 58px; }
+  .open-fridge-door { width: 56px; }
+  .door-gasket { inset: 7px 2px; }
+  .door-pocket img { width: 28px; }
+  .fridge-top { gap: 5px; letter-spacing: .7px; }
+  .refrigerator { padding-left: 10px; padding-right: 10px; }
+  .fridge-base { margin-left: -10px; margin-right: -10px; }
+  .fridge-base span:last-child { display: none; }
+  .fridge-shelves { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .fridge-feet::after { right: 80px; }
+}

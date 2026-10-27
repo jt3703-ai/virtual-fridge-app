@@ -51,6 +51,10 @@
   function rank(inventory,prefs={},date=today()){
     return recipes.map(r=>match(r,inventory,date)).filter(m=>m.recipe.time<=(prefs.time||60)&&m.nutrition[0]>=(prefs.minCal||0)&&m.nutrition[0]<=(prefs.maxCal??1000)&&(!prefs.diet||prefs.diet==='all'||m.recipe.diet===prefs.diet||(prefs.diet==='vegetarian'&&m.recipe.diet==='vegan'))).sort((a,b)=>b.score-a.score||a.recipe.time-b.recipe.time||a.recipe.id.localeCompare(b.recipe.id));
   }
+  // Public recommendation entry point: only complete, quantity-sufficient matches.
+  function recommend(inventory,prefs={},date=today()){
+    return rank(inventory,prefs,date).filter(result=>result.ready);
+  }
   function deduct(recipe,inventory,date=today()){
     const result=match(recipe,inventory,date);
     if(!result.ready)throw Error('Not enough eligible ingredients. Add the missing quantities or review past-date items.');
@@ -63,6 +67,6 @@
       const f=byId(id);const storage=f.shelf.fridge!==undefined?'fridge':'pantry';const shelf=f.shelf[storage];return {id:'demo-'+index,food:id,name:f.name,quantity,unit:f.unit,grams:f.grams,n:[...f.n],category:f.category,storage,added:addDays(date,-Math.max(0,shelf-left)),expiry:addDays(date,left),manualDate:false};
     });
   }
-  root.FridgeEngine={byId,identify,today,day,validDate,addDays,freshness,estimate,validateItem,match,rank,deduct,demo,rounded};
+  root.FridgeEngine={byId,identify,today,day,validDate,addDays,freshness,estimate,validateItem,match,rank,recommend,deduct,demo,rounded};
   if(typeof module!=='undefined')module.exports=root.FridgeEngine;
 })(typeof globalThis!=='undefined'?globalThis:window);

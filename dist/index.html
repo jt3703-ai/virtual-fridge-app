@@ -19,18 +19,23 @@
   <section id="fridge-view" aria-labelledby="page-title">
     <div class="page-heading"><div><p class="eyebrow">A LITTLE FRESH START</p><h1 id="page-title">My Fridge<span class="title-dot">.</span></h1><p>Keep the good stuff in sight.</p></div><button class="primary" id="add">＋ Add food</button></div>
     <div class="fridge-layout">
-      <section class="refrigerator" aria-label="Your virtual refrigerator">
+      <div class="fridge-scene">
+        <div class="freezer-door" aria-hidden="true"><span>fridgekind</span><i class="freezer-handle"></i></div>
+        <section class="refrigerator" aria-label="Your open virtual refrigerator">
         <div class="fridge-top"><span class="fridge-light"></span><span>FRESH LITTLE POSSIBILITIES</span><span class="temperature">4°C</span></div>
         <div class="fridge-toolbar"><label class="visually-hidden" for="search">Search your ingredients</label><input id="search" type="search" placeholder="Find something in your fridge…"><div id="inventory-filters" class="filters"><button class="chip active" data-filter="all" aria-pressed="true">All food</button><button class="chip" data-filter="soon" aria-pressed="false">Use soon</button><button class="chip" data-filter="expired" aria-pressed="false">Review dates</button></div></div>
         <div id="items" class="fridge-shelves"></div>
         <button class="add-bottom" id="add-more">＋ Add something fresh</button>
         <div class="fridge-base"><span>fridgekind</span><span>YOUR EVERYDAY GOOD FOOD</span></div>
-      </section>
-      <aside class="fridge-sidebar" aria-label="Fridge summary and menu generation"><div class="sidebar-leaf" aria-hidden="true">❧</div><h2>A little in your fridge.<br>A lot of possibility.</h2><p>Add what you have. We’ll help you find a quick, nourishing way to use it.</p><div class="quiet-stats"><span><strong id="total-stat">0</strong> foods stored</span><span><strong id="soon-stat">0</strong> to use soon</span></div><button class="primary" id="generate">Summarize Today’s Menu <span aria-hidden="true">→</span></button><p class="microcopy">Three meal ideas, thoughtfully matched to your fridge.</p><div id="priority" class="priority-note"></div><p class="freshness-note">Freshness dates are editable estimates, not guarantees of food safety. Past-date items need review before use.</p></aside>
+        </section>
+        <div class="open-fridge-door" aria-hidden="true"><div class="door-gasket"><div class="door-pocket top-pocket"></div><div class="door-pocket middle-pocket"></div><div class="door-pocket bottom-pocket"></div></div><i class="door-handle"></i></div>
+        <div class="fridge-feet" aria-hidden="true"></div>
+      </div>
+      <aside class="fridge-sidebar" aria-label="Fridge summary and menu generation"><div class="sidebar-leaf" aria-hidden="true">❧</div><h2>A little in your fridge.<br>A lot of possibility.</h2><p>Add what you have. We’ll help you find a quick, nourishing way to use it.</p><div class="quiet-stats"><span><strong id="total-stat">0</strong> foods stored</span><span><strong id="soon-stat">0</strong> to use soon</span></div><button class="primary" id="generate">Summarize Today’s Menu <span aria-hidden="true">→</span></button><p class="microcopy">Up to three recipes. Everything already in your fridge.</p><div id="priority" class="priority-note"></div><p class="freshness-note">Freshness dates are editable estimates, not guarantees of food safety. Past-date items need review before use.</p></aside>
     </div>
   </section>
   <section id="menu-view" hidden aria-labelledby="recipe-title">
-    <div class="page-heading"><div><p class="eyebrow" id="menu-date">A LITTLE LESS DECIDING</p><h1 id="recipe-title" tabindex="-1">Today’s Menu<span class="title-dot">.</span></h1><p id="recipe-sub">Simple ideas, made with what you have.</p></div><button class="outline" id="undo" disabled>↶ Undo last use</button></div>
+    <div class="page-heading"><div><p class="eyebrow" id="menu-date">A LITTLE LESS DECIDING</p><h1 id="recipe-title" tabindex="-1">Today’s Menu<span class="title-dot">.</span></h1><p id="recipe-sub">Only recipes you can make with what you have.</p></div><button class="outline" id="undo" disabled>↶ Undo last use</button></div>
     <details class="menu-preferences"><summary>Meal preferences</summary><form id="preferences" class="filter-bar"><label for="max-time">Time<select id="max-time"><option value="60">Any time</option><option value="10">10 min or less</option><option value="15">15 min or less</option><option value="20">20 min or less</option></select></label><label for="diet">Diet<select id="diet"><option value="all">Everything</option><option value="vegetarian">Vegetarian</option><option value="vegan">Vegan</option></select></label><label for="min-cal">Min kcal<input type="number" id="min-cal" min="0" max="3000" value="0" step="50"></label><label for="max-cal">Max kcal<input type="number" id="max-cal" min="0" max="3000" value="1000" step="50"></label></form><button class="text-button" id="regenerate">Refresh menu with these preferences</button></details>
     <p class="status-line" id="recipe-status" aria-live="polite"></p><div id="recipes" class="recipe-grid"></div>
     <p class="small-note">Meal ideas, not a prescribed daily diet. Estimated nutrition is per serving; ingredient quantities are for the whole recipe. Open a recipe to review and confirm ingredients used.</p>

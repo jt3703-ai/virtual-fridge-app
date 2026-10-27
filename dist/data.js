@@ -31,19 +31,19 @@
     ['strawberries','Strawberries','Fruit','🍓','1 portion (100 g)',100,[32,.67,7.68,.3],{fridge:2},'Fresh whole strawberries.',['strawberry']],
     ['oil','Olive oil','Other','🫒','1 teaspoon (4.5 g)',4.5,[884,0,0,100],{pantry:90},'Opened olive oil stored cool and dark.',['oil']]
   ].map(([id,name,category,emoji,unit,grams,n,shelf,assumption,aliases])=>({id,name,category,emoji,unit,grams,n,shelf,assumption,aliases,source:'USDA SR Legacy, rounded; see DATA_SOURCES.md'}));
-  const image = id => `https://images.unsplash.com/${id}?w=800&auto=format&fit=crop&q=85`;
+
   const recipes = [
-    ['green-omelette','The green-day omelette','A quick, protein-rich plate with tender greens and sweet tomatoes.',12,'vegetarian',1,[['eggs',2],['spinach',2],['tomato',1],['oil',1]],'photo-1525351484163-7529414344d8'],
-    ['avocado-toast','Avocado & egg toast','Creamy avocado, whole-grain crunch, and a satisfying protein boost.',10,'vegetarian',1,[['bread',2],['avocado',.5],['eggs',1]],'photo-1525351484163-7529414344d8'],
-    ['chickpea-bowl','Mediterranean chickpea bowl','Colorful, crisp, and ready for a lunch break that feels good.',10,'vegetarian',1,[['chickpeas',1.5],['cucumber',.5],['tomato',1],['feta',1],['oil',1]],'photo-1512621776951-a57141f2eefd'],
-    ['chicken-rice','Chicken & greens rice bowl','A simple mix of lean protein, whole grains, and green goodness.',20,'omnivore',1,[['chicken',1],['rice',1.5],['broccoli',1],['oil',1]],'photo-1546069901-ba9599a7e63c'],
-    ['tofu-bowl','Golden tofu & broccoli bowl','A plant-powered bowl with a hearty whole-grain base.',15,'vegan',1,[['tofu',1.5],['broccoli',1],['rice',1.5],['oil',1]],'photo-1540420773420-3366772f4999'],
-    ['overnight-oats','Berry good yogurt oats','A no-cook breakfast with fruit, fiber, and a little staying power.',5,'vegetarian',1,[['oats',1],['yogurt',1],['strawberries',1],['banana',.5]],'photo-1511690743698-d9d85f2fbf38'],
-    ['tomato-pasta','Tomato & spinach pasta','Whole-grain comfort with a fresh green twist.',20,'vegetarian',2,[['pasta',2],['tomato',3],['spinach',4],['feta',2],['oil',2]],'photo-1473093295043-cdd812d0e601'],
-    ['tuna-toast','Crunchy tuna lunch toast','An easy, high-protein lunch with a fresh cucumber crunch.',8,'omnivore',1,[['tuna',1],['bread',2],['cucumber',.5],['yogurt',.25]],'photo-1509722747041-616f39b57569'],
-    ['veggie-rice','Rainbow chickpea rice','A colorful one-bowl idea with plant protein and plenty of vegetables.',15,'vegan',1,[['chickpeas',1],['rice',1.5],['carrot',1],['pepper',1],['oil',1]],'photo-1512621776951-a57141f2eefd'],
-    ['apple-oats','Apple & banana breakfast bowl','A quick whole-grain start with naturally sweet fruit.',8,'vegetarian',1,[['oats',1],['milk',.5],['apple',.5],['banana',.5]],'photo-1511690743698-d9d85f2fbf38']
-  ].map(([id,name,description,time,diet,servings,ingredients,photo])=>({id,name,description,time,diet,servings,ingredients:ingredients.map(([food,units])=>({food,units})),image:image(photo)}));
+    ['green-omelette','The green-day omelette','A quick, protein-rich plate with tender greens and sweet tomatoes.',12,'vegetarian',1,[['eggs',2],['spinach',2],['tomato',1],['oil',1]]],
+    ['avocado-toast','Avocado & egg toast','Creamy avocado, whole-grain crunch, and a satisfying protein boost.',10,'vegetarian',1,[['bread',2],['avocado',.5],['eggs',1]]],
+    ['chickpea-bowl','Mediterranean chickpea bowl','Colorful, crisp, and ready for a lunch break that feels good.',10,'vegetarian',1,[['chickpeas',1.5],['cucumber',.5],['tomato',1],['feta',1],['oil',1]]],
+    ['chicken-rice','Chicken & greens rice bowl','A simple mix of lean protein, whole grains, and green goodness.',20,'omnivore',1,[['chicken',1],['rice',1.5],['broccoli',1],['oil',1]]],
+    ['tofu-bowl','Golden tofu & broccoli bowl','A plant-powered bowl with a hearty whole-grain base.',15,'vegan',1,[['tofu',1.5],['broccoli',1],['rice',1.5],['oil',1]]],
+    ['overnight-oats','Berry good yogurt oats','A no-cook breakfast with fruit, fiber, and a little staying power.',5,'vegetarian',1,[['oats',1],['yogurt',1],['strawberries',1],['banana',.5]]],
+    ['tomato-pasta','Tomato & spinach pasta','Whole-grain comfort with a fresh green twist.',20,'vegetarian',2,[['pasta',2],['tomato',3],['spinach',4],['feta',2],['oil',2]]],
+    ['tuna-toast','Crunchy tuna lunch toast','An easy, high-protein lunch with a fresh cucumber crunch.',8,'omnivore',1,[['tuna',1],['bread',2],['cucumber',.5],['yogurt',.25]]],
+    ['veggie-rice','Rainbow chickpea rice','A colorful one-bowl idea with plant protein and plenty of vegetables.',15,'vegan',1,[['chickpeas',1],['rice',1.5],['carrot',1],['pepper',1],['oil',1]]],
+    ['apple-oats','Apple & banana breakfast bowl','A quick whole-grain start with naturally sweet fruit.',8,'vegetarian',1,[['oats',1],['milk',.5],['apple',.5],['banana',.5]]]
+  ].map(([id,name,description,time,diet,servings,ingredients])=>({id,name,description,time,diet,servings,ingredients:ingredients.map(([food,units])=>({food,units})),image:`assets/recipes/${id}.svg`}));
   root.FridgeData={foods,recipes};
   if(typeof module!=='undefined') module.exports=root.FridgeData;
 })(typeof globalThis!=='undefined'?globalThis:window);

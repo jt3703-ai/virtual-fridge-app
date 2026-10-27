@@ -62,3 +62,10 @@ Full keyboard-only task completion, screen-reader announcements, Safari/Firefox,
 - Browser console error check after these workflows returned no errors.
 
 The earlier demo/saved-tab workflows describe the previous version, not the current landing experience. The domain demo fixture remains only for regression tests.
+
+## Complete-only recipe revision
+
+- Re-ran the suite: 24 domain tests passed, including empty/incomplete recommendation exclusion, consumption making stock insufficient, and local illustration paths for all recipes.
+- Browser: empty fridge generated no recipe cards. Adding 1 egg, 2 bread slices and 1 avocado generated only Avocado & egg toast; partially matched recipes were absent.
+- Confirmed use removed the only eligible card; Undo restored it.
+- Inspected the open-fridge appliance and flat recipe image on desktop. At 390×844 the page width remained 390 px, every observed illustration loaded, and no browser console errors were logged.
