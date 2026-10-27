@@ -44,3 +44,7 @@ Twenty-four SVG illustrations were authored directly from geometric shapes; no i
 ## Complete recipes and open-fridge illustrations
 
 The user requested no recipes requiring additional ingredients and clarified an open refrigerator with simple flat drawings. The engine now exposes recommend(), which filters ranked results to quantity-sufficient complete recipes. Saved menu IDs are also revalidated on render, including after consumption and freshness changes. No-match states explain why no recipe appears. The fridge now has a drawn freezer, open door, pockets, interior shelves, drawer and feet; empty door pockets do not imply stored foods. Ten local SVG meal drawings replace every external recipe photograph and follow the same muted flat palette as the food icons.
+
+## Single-food option revision
+
+The user approved assuming oil, salt and water, and asking users to identify/category-label unknown foods. They clarified that only options should be provided, not cooking instructions. The engine now supplements 11 curated recipes with inventory-specific simple options; pantry oil is displayed and counted nutritionally but not deducted. Unknown foods require category selection and receive a generic serving option with manually entered nutrients, avoiding invented food-specific instructions. Additional local SVG food-on-plate drawings support these options. Quantity, freshness and preference checks remain in place.

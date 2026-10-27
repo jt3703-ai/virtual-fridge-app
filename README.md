@@ -16,9 +16,9 @@ Open http://localhost:8000. Keep using the same browser and origin (scheme, host
 
 1. The app opens directly to **My Fridge**, initially empty, with illustrated food cards arranged on refrigerator shelves.
 2. **Add food** opens a searchable library of 23 foods with locally bundled SVG illustrations, portion weights, estimated calories/macros, and storage-specific shelf-life previews.
-3. Select a food to customize quantities, gram weight, nutrition and dates before saving. **Add a custom food** supports manual items outside the library.
+3. Select a food to customize quantities, gram weight, nutrition and dates before saving. **Add a custom food** supports manual items outside the library, with a required category to identify the food type.
 4. Edit or remove foods from the fridge. Search and filter by freshness. Dates and detailed nutrition remain in the editor to keep the landing view uncluttered.
-5. **Summarize Today’s Menu** chooses up to three highest-ranked recipe alternatives using actual inventory and preferences. Only recipes with every required quantity already available are eligible. These are not breakfast/lunch/dinner assignments or a full-day nutrition plan. No pantry ingredient is assumed.
+5. **Summarize Today’s Menu** chooses up to three highest-ranked recipe alternatives using actual inventory and preferences. Only recipes with every required quantity already available are eligible. These are not breakfast/lunch/dinner assignments or a full-day nutrition plan. Oil, salt and water are assumed pantry basics, as requested. Oil is included in nutrition when listed, but none of these basics are deducted.
 6. Switch between **My Fridge** and **Today’s Menu** in the top navigation. The selected recipe IDs persist for the current local calendar day; amounts and nutrition update from live inventory. Regenerate when you want a new selection. A new day requires a new summary.
 7. Recipe cards list every required ingredient quantity, missing grams, calories and all three macros per serving. Open a recipe for exact availability and deduction details.
 8. **Confirm Ingredients Used** revalidates and consumes the whole recipe, using earliest-date eligible batches first. **Undo last use** restores the last consumption in the current session. Inventory edits, cross-tab changes and reload invalidate undo.
@@ -33,7 +33,7 @@ virtual-fridge-app/
   dist/
     index.html          Semantic page and labeled dialogs
     styles.css          Green/cream design and responsive layouts
-    data.js             23 reference foods and 10 curated recipes
+    data.js             23 reference foods and 11 curated recipes
     engine.js           Pure dates, units, ranking, nutrition, deduction logic
     app.js              DOM events, state, validation, localStorage
     assets/foods/       24 local SVG illustrations (23 foods + custom)
@@ -93,10 +93,18 @@ A public repository is suitable for a public instructor-facing Pages site; choos
 
 ## Limits
 
-This beta uses rounded reference estimates, not a live nutrition service or measured freshness. Some storage/food combinations deliberately offer no date prediction. Always review labels and actual history; an estimated date cannot establish safety. Past-date items are excluded until their details are reviewed and updated. A new storage choice estimates from the entered start date; it cannot reconstruct prior handling. Unknown foods can be tracked but will not join recipe matches until a reference and recipe are explicitly added.
+This beta uses rounded reference estimates, not a live nutrition service or measured freshness. Some storage/food combinations deliberately offer no date prediction. Always review labels and actual history; an estimated date cannot establish safety. Past-date items are excluded until their details are reviewed and updated. A new storage choice estimates from the entered start date; it cannot reconstruct prior handling. Unknown foods receive a basic category-based serving option using user-entered nutrients; the app does not infer a specific cooking method or identify the food automatically.
 
 No allergy filtering, personalized diet plans, account/cloud sync, barcode scanning, serving-size selector, or step-by-step cooking instructions are included. Prep times are approximate active preparation targets and omit thawing, shopping and advance chilling. Flat recipe drawings are illustrative. localStorage is origin-specific and can be cleared by browser settings. Multi-tab updates are last-write-wins; atomic cross-tab transactions are outside this beta. Storage failures are shown rather than silently claiming persistence. Corrupt saved data is preserved and the session enters temporary mode.
 
 ## Things to experiment with
 
 Change `--green`, `--bg` and `--line` in styles.css; adjust Grid column proportions, spacing, card radii and breakpoints; edit the SVG food and meal illustrations; expand reference foods and aliases in data.js; add complete recipe ingredient definitions; tune documented ranking weights in engine.js and add tests for changed behavior.
+
+## Simple food options and pantry rules
+
+The collection now includes Tomato & egg stir-fry. Each eligible inventory food also receives a small, single-food option: Fried egg, steamed broccoli, warm milk, plain yogurt, toast, and similar ideas. These are recipe/serving choices, not cooking instructions or complete nutritional meal plans. Custom foods use a generic “Simple [food] plate” after the user supplies a category and their own nutrition. A food such as oil may produce a condiment option rather than a meal.
+
+Simple portions are capped at one reference portion (100 g for custom foods), and scale down to what remains. Menu IDs for these options are resolved from current inventory rather than a hard-coded recipe list. Expired foods remain excluded and user-selected diet/time/calorie filters can still leave no result. The app cannot guarantee an appropriate dish for arbitrary unidentified substances; it offers food-based options using the user's declared identity/category.
+
+Pantry oil is treated consistently across curated and simple options: its reference calories and macros are added, the amount is displayed, and it never consumes an inventory record. Salt and water are available as needed, are not counted as tracked ingredients, and sodium is not calculated.

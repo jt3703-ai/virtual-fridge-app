@@ -33,6 +33,7 @@
   ].map(([id,name,category,emoji,unit,grams,n,shelf,assumption,aliases])=>({id,name,category,emoji,unit,grams,n,shelf,assumption,aliases,source:'USDA SR Legacy, rounded; see DATA_SOURCES.md'}));
 
   const recipes = [
+    ['tomato-eggs','Tomato & egg stir-fry','A simple, satisfying classic with just tomatoes, eggs, and pantry basics.',10,'vegetarian',1,[['tomato',1],['eggs',2],['oil',1]]],
     ['green-omelette','The green-day omelette','A quick, protein-rich plate with tender greens and sweet tomatoes.',12,'vegetarian',1,[['eggs',2],['spinach',2],['tomato',1],['oil',1]]],
     ['avocado-toast','Avocado & egg toast','Creamy avocado, whole-grain crunch, and a satisfying protein boost.',10,'vegetarian',1,[['bread',2],['avocado',.5],['eggs',1]]],
     ['chickpea-bowl','Mediterranean chickpea bowl','Colorful, crisp, and ready for a lunch break that feels good.',10,'vegetarian',1,[['chickpeas',1.5],['cucumber',.5],['tomato',1],['feta',1],['oil',1]]],

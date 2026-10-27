@@ -69,3 +69,12 @@ The earlier demo/saved-tab workflows describe the previous version, not the curr
 - Browser: empty fridge generated no recipe cards. Adding 1 egg, 2 bread slices and 1 avocado generated only Avocado & egg toast; partially matched recipes were absent.
 - Confirmed use removed the only eligible card; Undo restored it.
 - Inspected the open-fridge appliance and flat recipe image on desktop. At 390×844 the page width remained 390 px, every observed illustration loaded, and no browser console errors were logged.
+
+## Simple options and pantry basics revision
+
+- Full domain suite: 29 passed. New checks cover every built-in food alone, tomato-and-egg stir-fry without tracked oil, oil calories without deduction, category-based custom portions, and scaling down small quantities.
+- Browser: two eggs with no other inventory generated Fried egg (1 egg plus 1 tsp pantry oil; 111 estimated kcal). Confirmation and Undo worked.
+- Added one tomato: the menu contained Tomato & egg stir-fry, Fried egg and Pan-warmed tomatoes, with quantities and macros and no cooking steps.
+- Unknown “Lentil salad” prompted for a category. After manual portion/nutrition/date entry it generated a simple option using 100 g (half a 200 g bowl), showing the entered 120 kcal, 8 g protein, 20 g carbs and 1 g fat.
+- Browser console check after these workflows returned no errors.
+- Earlier assertions that no pantry foods are assumed or no eggs-only recipe exists describe superseded behavior; tests now reflect the explicit pantry approval.

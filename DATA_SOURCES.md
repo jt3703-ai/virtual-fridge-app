@@ -27,3 +27,5 @@ Illustrative photos are requested from `images.unsplash.com`; URLs are in data.j
 The redesigned food library and fridge use 24 locally authored SVG illustrations in `dist/assets/foods/`. These are stylized geometric drawings and do not depend on fonts or external image services. The external-image notes above apply only to recipe photographs.
 
 Current visual revision: all recipe photography has been replaced by ten locally authored flat SVG meal illustrations in `dist/assets/recipes/`. Recipe data uses only these local paths. The fridge uses CSS geometry to draw the open appliance; no external artwork or image-generation service is involved. Earlier photo notes describe a previous revision.
+
+Simple options use the existing reference food values or custom user values. Pantry oil uses the same 884 kcal/100 g reference as tracked olive oil; a listed teaspoon weighs 4.5 g. Salt and water have no tracked amounts, and sodium is outside the nutritional display. Category-based custom options do not claim to identify or validate an unknown food. The collection now has eleven curated recipes plus generated single-food serving options.
