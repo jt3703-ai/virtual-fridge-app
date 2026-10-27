@@ -48,3 +48,17 @@ Using isolated localhost inventory to avoid modifying the user's preview:
 ## Remaining manual QA
 
 Full keyboard-only task completion, screen-reader announcements, Safari/Firefox, multiple mobile hardware devices, offline imagery behavior, corrupted/full storage recovery, rapid concurrent multi-tab edits, and all combinations of saved/filter controls have not received exhaustive browser testing. Engine tests cover validation and conversion paths, but do not substitute for usability testing or food-data verification.
+
+## Minimalist redesign regression (October 27, 2026)
+
+- Re-ran all 21 domain tests successfully and checked app.js syntax.
+- Browser loaded v2 with zero foods and the My Fridge view visible.
+- Opened the searchable library: 23 illustrated choices. Egg preview showed portion, 72 kcal, macros and 21 refrigerated days.
+- Selected Eggs, changed to four units and 150 kcal/100 g; saved and refreshed. One inventory record persisted.
+- Added four units each of bread and avocado; generated three ranked alternatives. Avocado & egg toast ranked first, showing all quantities and updated 333 kcal/serving from the edited egg reference.
+- Opened that recipe and confirmed consumption: bread 4→2, avocado 4→3.5, eggs 4→3. Navigated to the menu and used Undo; counts returned to four each.
+- Searched an unknown catalog term, verified custom-entry guidance, manually added My soup with portion, date and nutrients.
+- Checked 390×844 mobile viewport: document width 390, no horizontal overflow; food illustrations loaded; food picker still contained 23 choices. Visually inspected desktop and mobile layouts.
+- Browser console error check after these workflows returned no errors.
+
+The earlier demo/saved-tab workflows describe the previous version, not the current landing experience. The domain demo fixture remains only for regression tests.

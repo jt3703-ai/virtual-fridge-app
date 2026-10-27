@@ -12,7 +12,7 @@ The existing project contained one HTML file with embedded CSS, a soft green/cre
 - Unknown names use manual values; no fuzzy matching or automatic invented nutrition. Recognized aliases are exact after case/whitespace normalization.
 - Date defaults use conservative selected values with food-specific storage assumptions. Unsupported combinations request manual dates. Date overrides survive later storage/date edits unless the user explicitly recalculates.
 - Past-date records remain visible for review but are excluded from recipes. No label says food is safe based on a date.
-- A single localStorage record contains inventory, preferences and saved recipe IDs. Initial sample data only appears when there is no saved record. Empty saved inventories remain empty. Malformed saved data is preserved, not replaced with samples.
+- The original beta used one localStorage record for inventory, preferences and saved IDs. The current redesign uses a separate v2 record for an initially empty inventory, preferences and today’s generated selection. Empty saved inventories remain empty. Malformed saved data is preserved, not replaced with samples.
 - Confirmation revalidates stock before creating a new inventory array. A successful action closes the dialog and clears the active recipe to prevent accidental repeated confirmation. Undo is limited to the latest consumption in the current session and invalidated by inventory edits.
 
 ## AI-assisted work
@@ -34,3 +34,9 @@ Independently audit every nutrition row against a pinned USDA FDC record, refine
 ## GitHub preparation
 
 The repository contains source, documentation, a dependency-free test suite and a GitHub Pages workflow. No browser inventory or credentials belong in Git. Existing remote repositories must be inspected before pushing; no force-push or overwrite is part of this workflow. See TEST_RESULTS.md and the delivery message for verified publishing status.
+
+## Minimalist redesign (October 27, 2026)
+
+Following user clarification, the app now opens to My Fridge with empty v2 storage, uses local simple vector food illustrations, and offers up to three suitable recipe alternatives rather than meal-time plans. The v1 record is preserved as an unused prior version. Existing calculation and consumption functions were retained. The broad dashboard, hero banner and saved-recipe navigation were removed from the interface. Nutrition details moved into the food picker/editor; menu cards show quantities and macros without requiring every recipe to be opened. Preferences use a collapsed disclosure. CSS was rewritten into organized sections for the simpler layout.
+
+Twenty-four SVG illustrations were authored directly from geometric shapes; no image-generation service or external food-image package was used. Recipe photos remain external illustrative photography. No GitHub repository was created or pushed.

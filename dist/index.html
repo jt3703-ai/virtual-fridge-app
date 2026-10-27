@@ -11,30 +11,33 @@
 <a class="skip" href="#main">Skip to content</a>
 <header><nav aria-label="Main navigation">
   <a class="brand" href="#" aria-label="Fridgekind home"><span aria-hidden="true">❧</span>fridgekind.</a>
-  <div class="links"><button class="active" data-page="fridge" aria-current="page">My fridge</button><button data-page="recipes">Recipes</button><button data-page="saved">Saved</button></div>
-  <div class="profile"><span style="color:#657a59;font-size:11px">A little less waste. A lot more good.</span><span class="avatar">BETA</span></div>
+  <div class="links"><button class="active" data-page="fridge" aria-current="page">My Fridge</button><button data-page="recipes">Today’s Menu</button></div>
+  <span class="nav-note">Good food. Less waste.</span>
 </nav></header>
 <main id="main">
-  <div class="page-heading"><div><div class="eyebrow">YOUR KITCHEN, A LITTLE SMARTER</div><h1>Good food starts in your fridge.</h1><p>Less time deciding. More good food. A little less waste.</p></div><time class="today" id="today"></time></div>
-  <section class="hero" aria-labelledby="hero-title"><div class="hero-text"><div class="eyebrow">FRESH IDEAS FOR BUSY DAYS</div><h2 id="hero-title">Your fridge. Your next great meal.</h2><p>Quick, nourishing ideas with what you already have.<br>Start with the ingredients that need a little love.</p><button class="primary" id="generate">✧ &nbsp; Generate Recipes <span aria-hidden="true">→</span></button></div><div class="hero-art"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format&fit=crop&q=85" alt="A colorful bowl of fresh vegetables"></div></section>
-  <section class="summary" aria-label="Your fridge at a glance"><article><strong id="total-stat">0</strong><span>ingredients in your fridge</span></article><article class="urgent"><strong id="soon-stat">0</strong><span>ingredients to use soon</span></article><article><strong id="ready-stat">0</strong><span>recipes ready to make</span></article></section>
   <p id="storage-warning" class="notice" role="alert"></p>
-  <div class="layout">
-    <aside aria-label="Ingredient management"><section class="panel" aria-labelledby="fridge-title"><div class="section-head"><h3 id="fridge-title">My refrigerator</h3><button class="icon-btn" id="add" aria-label="Add ingredient">+</button></div><p class="sub">Small inventory. Big possibilities.</p><p class="intro-note">First visit includes sample ingredients. Replace them with what you actually have.</p>
-      <div class="search"><label class="visually-hidden" for="search">Search your ingredients</label><input id="search" type="search" placeholder="Search your fridge…"></div>
-      <div class="filters" id="inventory-filters" aria-label="Filter ingredients"><button class="chip active" data-filter="all" aria-pressed="true">All items</button><button class="chip" data-filter="soon" aria-pressed="false">Use soon</button><button class="chip" data-filter="expired" aria-pressed="false">Review dates</button><button class="chip" data-filter="Vegetables" aria-pressed="false">Vegetables</button></div>
-      <div id="items"></div><button class="add-bottom" id="add-more">＋ &nbsp; Add an ingredient</button>
-    </section><section class="fridge-note" aria-labelledby="priority-title"><span aria-hidden="true">☀</span><div><b id="priority-title">A little nudge for your fridge</b><p id="priority"></p></div></section>
-    <p class="intro-note">Freshness dates are estimates, not food safety guarantees. Check package labels and actual storage conditions. Past-date items are excluded from recipes until reviewed and updated.</p></aside>
-    <section aria-labelledby="recipe-title"><div class="section-head recipes-head"><div><h3 id="recipe-title" class="view-heading" tabindex="-1">Made for your fridge</h3><p class="sub" id="recipe-sub">Quick meals. Thoughtfully matched to your ingredients.</p></div><button class="outline" id="undo" disabled>↶ Undo last use</button></div>
-      <div class="recipe-filters" id="recipe-filters" aria-label="Recipe priorities"><button class="chip active" data-rfilter="all" aria-pressed="true">✧ For you</button><button class="chip" data-rfilter="soon" aria-pressed="false">Use it up</button><button class="chip" data-rfilter="ready" aria-pressed="false">Ready to make</button><button class="chip" data-rfilter="protein" aria-pressed="false">High protein</button></div>
-      <form id="preferences" class="filter-bar"><label for="max-time">Time<select id="max-time"><option value="60">Any time</option><option value="10">10 min or less</option><option value="15">15 min or less</option><option value="20">20 min or less</option></select></label><label for="diet">Diet<select id="diet"><option value="all">Everything</option><option value="vegetarian">Vegetarian</option><option value="vegan">Vegan</option></select></label><label for="min-cal">Min kcal<input type="number" id="min-cal" min="0" max="3000" value="0" step="50"></label><label for="max-cal">Max kcal<input type="number" id="max-cal" min="0" max="3000" value="1000" step="50"></label></form>
-      <p class="status-line" id="recipe-status" aria-live="polite"></p><div class="recipe-grid" id="recipes"></div>
-      <p class="small-note data-note">Estimated nutrition per serving, calculated from ingredient weights. Photos are illustrative. Recipe selections include every listed ingredient; no pantry ingredients are assumed.</p>
-    </section>
-  </div>
-  <footer><span>❧ &nbsp; A happier fridge. A lighter footprint.</span><a href="#" id="about">About the estimates &amp; this beta</a></footer>
+  <section id="fridge-view" aria-labelledby="page-title">
+    <div class="page-heading"><div><p class="eyebrow">A LITTLE FRESH START</p><h1 id="page-title">My Fridge<span class="title-dot">.</span></h1><p>Keep the good stuff in sight.</p></div><button class="primary" id="add">＋ Add food</button></div>
+    <div class="fridge-layout">
+      <section class="refrigerator" aria-label="Your virtual refrigerator">
+        <div class="fridge-top"><span class="fridge-light"></span><span>FRESH LITTLE POSSIBILITIES</span><span class="temperature">4°C</span></div>
+        <div class="fridge-toolbar"><label class="visually-hidden" for="search">Search your ingredients</label><input id="search" type="search" placeholder="Find something in your fridge…"><div id="inventory-filters" class="filters"><button class="chip active" data-filter="all" aria-pressed="true">All food</button><button class="chip" data-filter="soon" aria-pressed="false">Use soon</button><button class="chip" data-filter="expired" aria-pressed="false">Review dates</button></div></div>
+        <div id="items" class="fridge-shelves"></div>
+        <button class="add-bottom" id="add-more">＋ Add something fresh</button>
+        <div class="fridge-base"><span>fridgekind</span><span>YOUR EVERYDAY GOOD FOOD</span></div>
+      </section>
+      <aside class="fridge-sidebar" aria-label="Fridge summary and menu generation"><div class="sidebar-leaf" aria-hidden="true">❧</div><h2>A little in your fridge.<br>A lot of possibility.</h2><p>Add what you have. We’ll help you find a quick, nourishing way to use it.</p><div class="quiet-stats"><span><strong id="total-stat">0</strong> foods stored</span><span><strong id="soon-stat">0</strong> to use soon</span></div><button class="primary" id="generate">Summarize Today’s Menu <span aria-hidden="true">→</span></button><p class="microcopy">Three meal ideas, thoughtfully matched to your fridge.</p><div id="priority" class="priority-note"></div><p class="freshness-note">Freshness dates are editable estimates, not guarantees of food safety. Past-date items need review before use.</p></aside>
+    </div>
+  </section>
+  <section id="menu-view" hidden aria-labelledby="recipe-title">
+    <div class="page-heading"><div><p class="eyebrow" id="menu-date">A LITTLE LESS DECIDING</p><h1 id="recipe-title" tabindex="-1">Today’s Menu<span class="title-dot">.</span></h1><p id="recipe-sub">Simple ideas, made with what you have.</p></div><button class="outline" id="undo" disabled>↶ Undo last use</button></div>
+    <details class="menu-preferences"><summary>Meal preferences</summary><form id="preferences" class="filter-bar"><label for="max-time">Time<select id="max-time"><option value="60">Any time</option><option value="10">10 min or less</option><option value="15">15 min or less</option><option value="20">20 min or less</option></select></label><label for="diet">Diet<select id="diet"><option value="all">Everything</option><option value="vegetarian">Vegetarian</option><option value="vegan">Vegan</option></select></label><label for="min-cal">Min kcal<input type="number" id="min-cal" min="0" max="3000" value="0" step="50"></label><label for="max-cal">Max kcal<input type="number" id="max-cal" min="0" max="3000" value="1000" step="50"></label></form><button class="text-button" id="regenerate">Refresh menu with these preferences</button></details>
+    <p class="status-line" id="recipe-status" aria-live="polite"></p><div id="recipes" class="recipe-grid"></div>
+    <p class="small-note">Meal ideas, not a prescribed daily diet. Estimated nutrition is per serving; ingredient quantities are for the whole recipe. Open a recipe to review and confirm ingredients used.</p>
+  </section>
+  <footer><span>❧ A happier fridge. A lighter footprint.</span><a href="#" id="about">About the estimates</a></footer>
 </main>
+<dialog id="picker-dialog" aria-labelledby="picker-title"><div class="dialog-top"><div><p class="eyebrow">MAKE YOURSELF AT HOME</p><h2 id="picker-title">What’s in your fridge?</h2></div><button class="close" aria-label="Close food picker">×</button></div><p>Pick a food, then make its portions and estimates your own.</p><label class="visually-hidden" for="picker-search">Search common foods</label><input id="picker-search" type="search" placeholder="Search common foods…"><div id="food-catalog" class="food-catalog"></div><button class="secondary full" id="custom-food">＋ Add a custom food</button><p class="small-note">Can’t find it? Add your own food with your own estimates.</p></dialog>
 <dialog id="ingredient-dialog" aria-labelledby="ingredient-title"><div class="dialog-top"><h2 id="ingredient-title">A fresh addition</h2><button class="close" type="button" aria-label="Close ingredient form">×</button></div>
   <form id="ingredient-form"><input type="hidden" id="item-id">
     <label for="food">Ingredient name</label><input id="food" list="foods" required maxlength="60" placeholder="e.g. Eggs, spinach, milk" autocomplete="off"><datalist id="foods"></datalist><p class="form-hint" id="reference-hint"></p>

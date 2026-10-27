@@ -14,13 +14,17 @@ Open http://localhost:8000. Keep using the same browser and origin (scheme, host
 
 ## Features and use
 
-1. First visit starts with clearly fictional demo inventory. Add your own foods with **+**.
-2. A recognized name supplies a unit, edible gram weight, nutrition per 100 g, and a storage-specific date estimate. All values are editable. Unknown foods require manual information and do not automatically match curated recipes.
-3. Edit quantity, unit weight, storage, dates and nutrition; search or filter inventory. Separate batches are retained when dates or assumptions differ; exact duplicates merge.
-4. **Generate Recipes** ranks a fixed collection using actual inventory. Filter by time, calories, diet, readiness, urgency, or high protein (at least 20 g/serving). Save favorite ideas with the heart.
-5. Open a recipe to review all quantities, available grams, missing quantities, servings and estimated macros. Opening does not consume ingredients.
-6. **Confirm Ingredients Used** revalidates availability and deducts the whole recipe's quantities. Earliest-dated eligible batches are used first; partially used amounts remain; empty batches disappear.
-7. **Undo last use** restores the last successful deduction during this session. Any inventory edit or change in another tab invalidates undo so that newer edits cannot be overwritten. Reloading also clears undo.
+1. The app opens directly to **My Fridge**, initially empty, with illustrated food cards arranged on refrigerator shelves.
+2. **Add food** opens a searchable library of 23 foods with locally bundled SVG illustrations, portion weights, estimated calories/macros, and storage-specific shelf-life previews.
+3. Select a food to customize quantities, gram weight, nutrition and dates before saving. **Add a custom food** supports manual items outside the library.
+4. Edit or remove foods from the fridge. Search and filter by freshness. Dates and detailed nutrition remain in the editor to keep the landing view uncluttered.
+5. **Summarize Today’s Menu** chooses up to three highest-ranked recipe alternatives using actual inventory and preferences. These are not breakfast/lunch/dinner assignments or a full-day nutrition plan. No pantry ingredient is assumed.
+6. Switch between **My Fridge** and **Today’s Menu** in the top navigation. The selected recipe IDs persist for the current local calendar day; amounts and nutrition update from live inventory. Regenerate when you want a new selection. A new day requires a new summary.
+7. Recipe cards list every required ingredient quantity, missing grams, calories and all three macros per serving. Open a recipe for exact availability and deduction details.
+8. **Confirm Ingredients Used** revalidates and consumes the whole recipe, using earliest-date eligible batches first. **Undo last use** restores the last consumption in the current session. Inventory edits, cross-tab changes and reload invalidate undo.
+9. Optional time, calorie and vegetarian/vegan preferences live in a collapsed section on the menu page. Changing preferences clears the generated selection until you explicitly refresh it.
+
+This redesign uses `fridgekind.beta.v2` browser storage to honor the requested empty start. Prior `v1` data is left untouched, but is not imported. Newly added foods persist normally; the fridge does not reset on every refresh. Food illustrations are code-authored local SVG assets. Recipe photography remains optional external imagery.
 
 ## Project structure
 
@@ -32,6 +36,7 @@ virtual-fridge-app/
     data.js             23 reference foods and 10 curated recipes
     engine.js           Pure dates, units, ranking, nutrition, deduction logic
     app.js              DOM events, state, validation, localStorage
+    assets/foods/       24 local SVG illustrations (23 foods + custom)
   tests.cjs             Dependency-free domain regression tests
   README.md
   DATA_SOURCES.md        Reference assumptions and source limitations
@@ -42,13 +47,13 @@ virtual-fridge-app/
   .openai/hosting.json   Separate Sites hosting configuration (not used by Pages)
 ```
 
-`dist` is the authored static website, not generated build output. It can be served from a subdirectory; all application file links are relative. No personal inventory is committed: browser records stay in localStorage under `fridgekind.beta.v1`.
+`dist` is the authored static website, not generated build output. It can be served from a subdirectory; all application file links are relative. No personal inventory is committed: browser records stay in localStorage under `fridgekind.beta.v2`.
 
 ## Architecture and learning guide
 
-**HTML:** `header`, labeled `nav`, one `main`, grouped `section` elements, inventory `aside`, individual `article` cards, and `footer` communicate purpose. A single h1 introduces the dashboard, followed by section headings. Form labels, a nutrition `fieldset`/`legend`, native `dialog` elements, a skip link, visible focus outlines and live feedback support keyboard and assistive technology use. Dialogs provide native modal focus handling and Escape dismissal.
+**HTML:** `header`, labeled `nav`, one `main`, grouped `section` elements, fridge summary `aside`, individual `article` cards, and `footer` communicate purpose. A single h1 introduces the dashboard, followed by section headings. Form labels, a nutrition `fieldset`/`legend`, native `dialog` elements, a skip link, visible focus outlines and live feedback support keyboard and assistive technology use. Dialogs provide native modal focus handling and Escape dismissal.
 
-**CSS:** Custom properties define the shared colors. Grid creates the inventory/recipe split, summary tiles, recipe gallery and form groups. Flexbox aligns navigation, card details and actions. Cream backgrounds, dark green actions and pale green surfaces establish hierarchy; amber and muted red identify date urgency without relying solely on color. Rounded borders and subtle hover movement preserve the original design. At 950 px the recipe grid simplifies; at 700 px the dashboard stacks; at 420 px cards use one column. Inputs and dialogs remain constrained to the viewport. Reduced-motion preferences remove transitions. System font fallbacks work without Google Fonts.
+**CSS:** Custom properties define the shared colors. Grid creates the fridge/sidebar split, illustrated shelves, food library, recipe gallery and form groups. Flexbox aligns navigation, card details and actions. Cream backgrounds, dark green actions and pale green surfaces establish hierarchy; amber and muted red identify date urgency without relying solely on color. Rounded borders and subtle hover movement preserve the original design. At 950 px the recipe grid simplifies; at 650 px the fridge and sidebar stack and recipes use one column; below 380 px the fridge uses two shelf columns. Inputs and dialogs remain constrained to the viewport. Reduced-motion preferences remove transitions. System font fallbacks work without Google Fonts.
 
 **JavaScript:** Deferred classic scripts run in dependency order: data → pure engine → UI controller. `FridgeData` and `FridgeEngine` are small explicit namespaces, also exported for Node tests. UI events update one state record and rerender relevant regions. Rendering escapes user-entered text. The engine has no browser dependency and can later accept normalized USDA data without rewriting the interface.
 
